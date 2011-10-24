@@ -1,0 +1,7 @@
+{% if robotar_user.get_absolute_url %}
+    <a href="{{ robotar_user.get_absolute_url }}">
+        <img src="{{ robotar_url }}" />
+    </a>
+{% else %}
+    <img src="{{ robotar_url }}" />
+{% endif %}
