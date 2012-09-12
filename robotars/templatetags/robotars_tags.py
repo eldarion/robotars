@@ -3,7 +3,9 @@
 from django import template
 from md5 import md5
 
+
 register = template.Library()
+
 
 @register.inclusion_tag("robotars/robotar.html")
 def robotar(user, size=None, gravatar_fallback=False, hashed=False):
