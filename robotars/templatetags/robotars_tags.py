@@ -9,15 +9,14 @@ register = template.Library()
 
 @register.inclusion_tag("robotars/robotar.html")
 def robotar(user, size=None, gravatar_fallback=False, hashed=False):
-    _user = user
-    if hashed:
-        _user = md5(user).hexdigest()
-    url = "http://robohash.org/%s?" % _user
+    url = "http://robohash.org/"
+    if gravatar_fallback:
+        if hashed:
+            url += "%s?gravatar=hashed&" % md5(user.email).hexdigest()
+        else:
+            url += "%s?gravatar=yes&" % user.email
+    else:
+        url += "%s?" % user
     if size is not None:
         url += 'size=%s' % size
-    if gravatar_fallback:
-        sep = "?"
-        if "?size=" in url:
-            sep = "&"
-        url += "%sgravatar=%s" % (sep, "hashed" if hashed else "yes")
     return {"robotar_url": url, "robotar_user": user}
