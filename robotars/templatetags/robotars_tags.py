@@ -9,7 +9,7 @@ register = template.Library()
 
 @register.inclusion_tag("robotars/robotar.html")
 def robotar(user, size=None, gravatar_fallback=False, hashed=False):
-    url = "http://robohash.org/"
+    url = "//robohash.org/"
     if gravatar_fallback:
         if hashed:
             url += "%s?gravatar=hashed&" % md5(user.email).hexdigest()
