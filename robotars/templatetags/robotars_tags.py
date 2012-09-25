@@ -18,5 +18,7 @@ def robotar(user, size=None, gravatar_fallback=False, hashed=False):
     else:
         url += "%s?" % user
     if size is not None:
+        if size.isdigit():
+            size = "%sx%s" % (size, size)
         url += 'size=%s' % size
     return {"robotar_url": url, "robotar_user": user}
