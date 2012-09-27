@@ -1,7 +1,7 @@
 # http://robohash.org/
 
 from django import template
-from md5 import md5
+from hashlib import md5
 
 
 register = template.Library()
