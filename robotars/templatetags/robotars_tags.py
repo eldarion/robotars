@@ -11,10 +11,11 @@ register = template.Library()
 def robotar(user, size=None, gravatar_fallback=False, hashed=False):
     url = "//robohash.org/"
     if gravatar_fallback:
+        email = user.email.lower()
         if hashed:
-            url += "%s?gravatar=hashed&" % md5(user.email).hexdigest()
+            url += "%s?gravatar=hashed&" % md5(email).hexdigest()
         else:
-            url += "%s?gravatar=yes&" % user.email
+            url += "%s?gravatar=yes&" % email
     else:
         url += "%s?" % user
     if size is not None:
